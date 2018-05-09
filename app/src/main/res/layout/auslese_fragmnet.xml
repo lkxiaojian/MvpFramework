@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+        <import type="com.wzrd.v.fragment.AusleseFragment"/>
+        <variable
+            name="click"
+            type="com.wzrd.v.fragment.AusleseFragment"
+
+            />
+
+        <variable
+            name="dataobj"
+            type="com.wzrd.m.been.Loginbeen.DataobjBean"
+
+            />
+
+
+    </data>
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={dataobj.projId}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={dataobj.id}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={dataobj.loginname}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={dataobj.password}"
+            android:textColor="@android:color/holo_red_dark" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={dataobj.status}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={dataobj.sex}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{dataobj.click}"
+
+            android:textSize="30dp"
+            android:text="@={dataobj.type}" />
+
+
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+
+            app:imageUrl="@{ dataobj.type }" />
+
+
+    </LinearLayout>
+
+
+</layout>
