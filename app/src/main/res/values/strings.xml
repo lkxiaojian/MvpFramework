@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Rxjava+Retrofit+Okhttp+Mvp</string>
+    <string name="app_name">MvpFramework</string>
     <string name="login_loading">处理中...</string>
     <string name="url">http://avatar.csdn.net/4/0/7/1_zhuhai__yizhi.jpg</string>
 </resources>
