@@ -29,4 +29,9 @@
         <item name="android:backgroundDimAmount">0.6</item>
     </style>
 
+    <!--自定义刷新-->
+    <declare-styleable name="CircleLoadingView">
+        <attr name="cv_progress_color" format="color" />
+    </declare-styleable>
+
 </resources>

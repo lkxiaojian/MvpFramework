@@ -44,10 +44,7 @@ public class HostFragment extends BaseLazyFragment<ResultView, ParsetPresenter> 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.host_fragmnet, null);
-
-
         isPrepared = true;
-
         unbinder = ButterKnife.bind(this, view);
         Rypresenter rypresenter = new Rypresenter(this);
         rypresenter.getlast(recycle, "123");

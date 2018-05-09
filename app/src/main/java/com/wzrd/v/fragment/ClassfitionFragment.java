@@ -1,19 +1,21 @@
 package com.wzrd.v.fragment;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.wzrd.R;
+import com.wzrd.databinding.TestCoustomBinding;
 import com.wzrd.m.been.MoviceBeen;
 import com.wzrd.p.ParsetPresenter;
-import com.wzrd.v.adapter.LyAadapter;
 import com.wzrd.v.fragment.base.BaseFragment;
 import com.wzrd.v.view.ResultView;
+import com.wzrd.v.view.recycleview.YRecycleView;
 
 import java.util.List;
 
@@ -29,57 +31,55 @@ import butterknife.Unbinder;
 public class ClassfitionFragment extends BaseFragment<ResultView, ParsetPresenter> {
 
     Unbinder unbinder;
+    @BindView(R.id.recycle)
+    YRecycleView recycle;
 
-
-    @BindView(R.id.srl)
-    SwipeRefreshLayout srl;
-
-    private View view;
+    private TestCoustomBinding binding;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.test, null);
-        unbinder = ButterKnife.bind(this, view);
+        binding = DataBindingUtil.inflate(inflater, R.layout.test_coustom, container, false);
+        unbinder = ButterKnife.bind(this, binding.getRoot());
         this.presenter.parsemovice("", "36");
-        srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        setlistener();
+        return binding.getRoot();
+    }
+    private void setlistener() {
+        recycle.setRefreshAndLoadMoreListener(new YRecycleView.OnRefreshAndLoadMoreListener() {
             @Override
             public void onRefresh() {
-                new Thread(new Runnable() {
-                    @Override
+                new Handler().postDelayed(new Runnable() {
+                public void run() {
+                    // 刷新数据结束时调用
+                    recycle.setReFreshComplete();
+                }
+            }, 2500);
+        }
+
+            @Override
+            public void onLoadMore() {
+                new Handler().postDelayed(new Runnable() {
                     public void run() {
-                        Thread.currentThread();
-                        try {
-                            Thread.sleep(2000);
-//                            srl.setRefreshing(false);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                        // 刷新数据结束时调用
+                        recycle.setloadMoreComplete();
                     }
-                }).start();
-
-
+                }, 2500);
             }
         });
-        return view;
     }
 
     @Override
     public void Result(Object result, String message) {
-
         MoviceBeen moviceBeen = (MoviceBeen) result;
-        Log.e("moviceBeen", "moviceBeen-->" + moviceBeen.getNextPageUrl());
         List<MoviceBeen.ItemListBean> itemList = moviceBeen.getItemList();
-        LyAadapter testRBadapter = new LyAadapter(getActivity(), itemList);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-
-
-
+        binding.setInboxdata(itemList);
     }
 
     @Override
     public void Errar(Object result) {
+        Log.e("result", "result--" + result);
 
     }
 
