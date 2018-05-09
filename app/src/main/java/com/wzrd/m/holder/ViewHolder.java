@@ -21,7 +21,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 /**
- * Created by lk on 2018/5/9.
+ * Created by lk on 2018/4/9.
  */
 
 public class ViewHolder extends RecyclerView.ViewHolder

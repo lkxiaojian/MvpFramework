@@ -33,7 +33,6 @@ public class ClassfitionFragment extends BaseFragment<ResultView, ParsetPresente
     Unbinder unbinder;
     @BindView(R.id.recycle)
     YRecycleView recycle;
-
     private TestCoustomBinding binding;
 
 
